@@ -1,0 +1,45 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  # Front-end service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"  # Expose the React app on port 3000
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+
+  # Back-end service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"  # Expose Rocket app on port 8000
+    environment:
+      - DATABASE_URL=postgres://postgres:password@db:5432/epd_db
+      - ROCKET_ENV=development
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app  # Mount the backend directory to enable live reloads
+
+  # PostgreSQL Database service
+  db:
+    image: postgres:13-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: epd_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+    driver: local
