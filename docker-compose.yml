@@ -8,7 +8,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:80"  # Expose the React app on port 3000
+      - "3000:80" # Expose the React app on port 3000
     environment:
       - NODE_ENV=development
     depends_on:
@@ -20,17 +20,17 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"  # Expose Rocket app on port 8000
+      - "8000:8000" # Expose Rocket app on port 8000
     environment:
       - DATABASE_URL=postgres://postgres:password@db:5432/epd_db
       - ROCKET_ENV=development
     depends_on:
       - db
     volumes:
-      - ./backend:/app  # Mount the backend directory to enable live reloads
+      - ./backend:/app # Mount the backend directory to enable live reloads
 
   # PostgreSQL Database service
-  db:
+  pgdb:
     image: postgres:13-alpine
     restart: always
     environment:
@@ -40,6 +40,13 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-volumes:
-  pgdata:
-    driver: local
+  # MongoDB Database service
+  mongodb:
+    image: mongo:4.4
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongodb
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: epd_data
+    volumes:
+      - mongodata:/data/db
