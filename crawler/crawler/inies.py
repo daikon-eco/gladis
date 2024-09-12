@@ -78,8 +78,12 @@ class Inies:
             response = self.get_product_response(id)
             if response.status_code == 200:
                 json_data = response.json()
-                json_data["_id"] = id
-                self.collection.insert_one(json_data)
+                if self.collection.find_one({"_id": id}):
+                    print(f"Product {id} already exists in the collection")
+                    self.collection.update_one({"_id": id}, {"$set": json_data})
+                else:
+                    json_data["_id"] = id
+                    self.collection.insert_one(json_data)
             else:
                 print(f"Failed to retrieve product {id}: {response.status_code}")
 
