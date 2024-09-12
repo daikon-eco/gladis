@@ -1,0 +1,22 @@
+meta {
+  name: eco_platform-get_all_data
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://data.eco-platform.org/resource/processes?search=true&validUntil=2022&format=json&distributed=true&virtual=true&metaDataOnly=false&view=extended&name=wool
+  body: none
+  auth: none
+}
+
+params:query {
+  search: true
+  validUntil: 2022
+  format: json
+  distributed: true
+  virtual: true
+  metaDataOnly: false
+  view: extended
+  name: wool
+}

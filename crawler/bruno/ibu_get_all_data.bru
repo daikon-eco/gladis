@@ -1,0 +1,18 @@
+meta {
+  name: ibu_get_all_data
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://ibudata.lca-data.com/resource/processes?search=true&vaildUntil=2020&name=wool&format=JSON
+  body: none
+  auth: none
+}
+
+params:query {
+  search: true
+  vaildUntil: 2020
+  name: wool
+  format: JSON
+}
