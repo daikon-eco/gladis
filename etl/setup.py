@@ -6,7 +6,7 @@ with open("requirements.txt") as f:
 requirements = [x.strip() for x in content]
 
 setup(
-    name="crawler",
+    name="etl",
     version="0.1",
     description="Python-based tool to retrieve EPDs from different websites.",
     packages=find_packages(),
@@ -14,6 +14,6 @@ setup(
     test_suite="tests",
     # include_package_data: to install data from MANIFEST.in
     include_package_data=True,
-    #scripts=["scripts/crawler-run"],
+    # scripts=["scripts/etl-run"],
     zip_safe=False,
 )
