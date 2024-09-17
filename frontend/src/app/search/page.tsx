@@ -12,11 +12,10 @@ const mockResults: Result[] = [
 ];
 
 export default function SearchApp() {
-  const t = useTranslations('SearchPage');
   const [query, setQuery] = useState('');
 
   const [results, setResults] = useState([] as Result[]);
-
+  const t = useTranslations();
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -29,18 +28,18 @@ export default function SearchApp() {
     <div className="container mx-auto p-4 max-w-2xl">
       <Card>
         <CardHeader>
-          <CardTitle>{t('title')}</CardTitle>
+          <CardTitle>{t('upper_gray_squirrel_cry')}</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSearch} className="flex space-x-2">
             <Input
               type="text"
-              placeholder="Entrez votre recherche..."
+              placeholder={t('fuzzy_this_jay_clasp')}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="flex-grow"
             />
-            <Button type="submit">Rechercher</Button>
+            <Button type="submit">{t('clean_keen_robin_embrace')}</Button>
           </form>
         </CardContent>
       </Card>
@@ -48,7 +47,7 @@ export default function SearchApp() {
       {results.length > 0 && (
         <Card className="mt-4">
           <CardHeader>
-            <CardTitle>Résultats</CardTitle>
+            <CardTitle>{t('zippy_mellow_pelican_delight')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
