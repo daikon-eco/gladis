@@ -3,6 +3,7 @@ import { FormEvent, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslations } from 'next-intl';
 
 type Result = { id: string; title: string; description: string };
 const mockResults: Result[] = [
@@ -11,7 +12,9 @@ const mockResults: Result[] = [
 ];
 
 export default function SearchApp() {
+  const t = useTranslations('SearchPage');
   const [query, setQuery] = useState('');
+
   const [results, setResults] = useState([] as Result[]);
 
   const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
@@ -26,7 +29,7 @@ export default function SearchApp() {
     <div className="container mx-auto p-4 max-w-2xl">
       <Card>
         <CardHeader>
-          <CardTitle>Recherche en langage naturel</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSearch} className="flex space-x-2">
