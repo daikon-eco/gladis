@@ -45,15 +45,17 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <NextThemesProvider attribute="class" defaultTheme="light" enableSystem>
           <NextIntlClientProvider messages={messages}>
             <Background>
-              <main className="flex min-h-screen w-full flex-col items-center justify-center gap-8 p-4 md:p-8">
-                <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col items-start justify-center">
+              <main className="flex min-h-screen flex-col items-center justify-center gap-8 p-4 md:p-8">
+                <div className="w-full max-w-4xl flex-1 items-center">
                   {children}
                 </div>
-                <Footer className="mx-auto w-full max-w-4xl" />
+                <Footer className="w-full max-w-4xl" />
               </main>
             </Background>
           </NextIntlClientProvider>

@@ -75,8 +75,8 @@ export type EPD = {
         rows: string[]; // length should be headers.length +1
       };
     };
-    health?: any;
-    comfort?: any;
+    health?: unknown;
+    comfort?: unknown;
     documents?: { id: string; name: string; link: string }[];
   };
 };
@@ -94,11 +94,20 @@ const localClient: APIClient = {
     }
 
     return [
-      { id: '1', title: 'Résultat 1', description: 'Description du résultat 1' },
-      { id: '2', title: 'Résultat 2', description: 'Description du résultat 2' },
+      {
+        id: '1',
+        title: 'Résultat 1',
+        description: 'Description du résultat 1',
+      },
+      {
+        id: '2',
+        title: 'Résultat 2',
+        description: 'Description du résultat 2',
+      },
     ];
   },
 
+  // @ts-expect-error not implemented yet
   getEPD: async (id: string) => {
     return Promise.resolve({
       id,

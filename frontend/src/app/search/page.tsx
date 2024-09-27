@@ -1,8 +1,15 @@
 'use client';
+
 import { FormEvent, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { useTranslations } from 'next-intl';
 import { useAPIClient } from '@/lib/api-client/context';
 import { SearchResult } from '@/lib/api-client/client';
@@ -26,11 +33,14 @@ export default function SearchApp() {
   // Results should be displayed as a table (for inspi, see table from the guy I contacted on x about synthetic monitoring)
 
   return (
-    <div className="container mx-auto p-4 max-w-2xl">
-      <Card>
+    <div className="flex flex-col bg-accent-foreground">
+      <Card className="">
         <CardHeader>
           <CardTitle>{t('upper_gray_squirrel_cry')}</CardTitle>
-          <CardDescription>Les données environnementales et sanitaires de référence pour le bâtiment</CardDescription>
+          <CardDescription>
+            Les données environnementales et sanitaires de référence pour le
+            bâtiment
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSearch} className="flex space-x-2">
@@ -54,23 +64,6 @@ export default function SearchApp() {
           </CardHeader>
         </Card>
       ))}
-      {results.length > 0 && (
-        <Card className="mt-4">
-          <CardHeader>
-            <CardTitle>{t('zippy_mellow_pelican_delight')}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {results.map((result) => (
-                <li key={result.id} className="border-b pb-2">
-                  <h3 className="font-semibold">{result.title}</h3>
-                  <p className="text-sm text-gray-600">{result.description}</p>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }

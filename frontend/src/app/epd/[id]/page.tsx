@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { useAPIClient } from '@/lib/api-client/context';
 import { SearchResult } from '@/lib/api-client/client';
 
-export default function SearchApp(params) {
+export default function SearchApp() {
   const client = useAPIClient();
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,7 @@ export default function SearchApp(params) {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-2xl">
+    <div className="container mx-auto max-w-2xl p-4">
       <Card>
         <CardHeader>
           <CardTitle>{t('upper_gray_squirrel_cry')}</CardTitle>
