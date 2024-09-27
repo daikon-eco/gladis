@@ -13,6 +13,7 @@ import {
 import { useTranslations } from 'next-intl';
 import { useAPIClient } from '@/lib/api-client/context';
 import { SearchResult } from '@/lib/api-client/client';
+import { cn } from '@/lib/utils';
 
 export default function SearchApp() {
   const client = useAPIClient();
@@ -30,17 +31,17 @@ export default function SearchApp() {
     setIsLoading(false);
   };
 
-  // Results should be displayed as a table (for inspi, see table from the guy I contacted on x about synthetic monitoring)
-
   return (
-    <div className="flex flex-col bg-accent-foreground">
+    <div
+      // NOTE: we set min-h-[60vh] to center the content on the page, for whatever reason I can't manage to center it without assigin an height
+      className={cn('flex min-h-[60vh] w-full flex-col', {
+        'justify-center': results.length === 0,
+      })}
+    >
       <Card className="">
         <CardHeader>
           <CardTitle>{t('upper_gray_squirrel_cry')}</CardTitle>
-          <CardDescription>
-            Les données environnementales et sanitaires de référence pour le
-            bâtiment
-          </CardDescription>
+          <CardDescription>{t('these_flat_stork_sprout')}</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSearch} className="flex space-x-2">
