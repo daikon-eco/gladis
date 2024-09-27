@@ -1,4 +1,12 @@
-export type SearchResult = { id: string; title: string; description: string };
+export type SearchResult = {
+  id: string;
+  title: string;
+  category: string;
+  value: string;
+  functionalUnit: string;
+  mainPerformance: string;
+  url: string;
+};
 
 export type EPD = {
   id: string;
@@ -87,7 +95,7 @@ type APIClient = {
 
 const localClient: APIClient = {
   search: async (query: string) => {
-    await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((r) => setTimeout(r, 100));
 
     if (!query) {
       return [];
@@ -96,13 +104,23 @@ const localClient: APIClient = {
     return [
       {
         id: '1',
-        title: 'Résultat 1',
-        description: 'Description du résultat 1',
+        title: 'IKO enertherm ALU NF 132mm R = 6.0 m2.K/W (v.1.1)',
+        category: 'Isolants',
+        functionalUnit:
+          '1 m² de panneau de mousse polyuréthane rigide parementé, d’épaisseur 132 mm et de résistance thermique de 6.00 m².K/W',
+        mainPerformance: 'Résistance thermique : 6 m2.K/W',
+        url: 'https://www.base-inies.fr/iniesV4/dist/infos-produit',
+        value: '1.34e+1 kg CO2 eq.',
       },
       {
         id: '2',
-        title: 'Résultat 2',
-        description: 'Description du résultat 2',
+        title: 'IKO enertherm ALU 50 ; 160 mm ; R = 7.25 m2.K/W (v.1.1)',
+        category: 'Isolants',
+        functionalUnit:
+          '1 m² de panneau de mousse polyuréthane rigide parementé, d’épaisseur 160 mm et de résistance thermique de 7.25 m².K/W',
+        mainPerformance: 'Résistance thermique : 7.25 m2.K/W',
+        url: 'https://www.base-inies.fr/iniesV4/dist/infos-produit/29641',
+        value: '1.59e+1 kg CO2 eq.',
       },
     ];
   },

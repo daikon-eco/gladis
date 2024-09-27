@@ -14,6 +14,14 @@ import { useTranslations } from 'next-intl';
 import { useAPIClient } from '@/lib/api-client/context';
 import { SearchResult } from '@/lib/api-client/client';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Link } from '@/components/ui/link';
 
 export default function SearchApp() {
   const client = useAPIClient();
@@ -58,13 +66,43 @@ export default function SearchApp() {
           </form>
         </CardContent>
       </Card>
-      {results.map((result) => (
-        <Card className="mt-4" key={result.id}>
-          <CardHeader>
-            <CardTitle>{result.title}</CardTitle>
-          </CardHeader>
-        </Card>
-      ))}
+
+      <Accordion type="multiple">
+        {results.map((result) => (
+          <AccordionItem value={result.id}>
+            <Card className="mt-4">
+              <AccordionTrigger>
+                <CardHeader className="flex flex-row items-center gap-4">
+                  <CardTitle className="w-3/5 truncate hover:underline">
+                    {result.title}
+                  </CardTitle>
+                  <Badge variant="default" className="size-fit">
+                    {result.category}
+                  </Badge>
+                  <span className="text-muted-foregound">{result.value}</span>
+                </CardHeader>
+              </AccordionTrigger>
+              <AccordionContent>
+                <CardContent>
+                  <span className="font-semibold">
+                    Unité fonctionnelle (U.F.):{' '}
+                  </span>{' '}
+                  {result.functionalUnit}
+                  <br />
+                  <br />
+                  <span className="font-semibold">
+                    Performance principale de l'UF (U.F.):{' '}
+                  </span>{' '}
+                  {result.mainPerformance}
+                  <br />
+                  <br />
+                  <Link label="Lien" href={result.url} />
+                </CardContent>
+              </AccordionContent>
+            </Card>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </div>
   );
 }

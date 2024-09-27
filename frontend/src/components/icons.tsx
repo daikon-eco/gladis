@@ -1,4 +1,11 @@
-import { ArrowUpRight, Laptop, Moon, SunMedium } from 'lucide-react';
+import {
+  ArrowUpRight,
+  ChevronDown,
+  ChevronUp,
+  Laptop,
+  Moon,
+  SunMedium,
+} from 'lucide-react';
 import type { LucideIcon, LucideProps } from 'lucide-react';
 
 export type Icon = LucideIcon;
@@ -9,6 +16,8 @@ export const Icons = {
   moon: Moon,
   laptop: Laptop,
   arrowUpRight: ArrowUpRight,
+  chevronDown: ChevronDown,
+  chevronUp: ChevronUp,
   github: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path
