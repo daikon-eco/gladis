@@ -67,20 +67,20 @@ export default function SearchApp() {
         </CardContent>
       </Card>
 
-      <Accordion type="multiple">
+      <Accordion type="multiple" className="flex flex-col gap-4 py-4">
         {results.map((result) => (
-          <AccordionItem value={result.id}>
-            <Card className="mt-4">
+          <AccordionItem value={result.id} className="flex flex-col">
+            <Card key={result.id} className="flex flex-col">
               <AccordionTrigger>
-                <CardHeader className="flex flex-row items-center gap-4">
-                  <CardTitle className="w-3/5 truncate hover:underline">
+                <div className="flex w-3/5 p-6">
+                  <CardTitle className="truncate hover:z-10 hover:overflow-visible hover:text-clip hover:bg-background hover:underline">
                     {result.title}
                   </CardTitle>
-                  <Badge variant="default" className="size-fit">
-                    {result.category}
-                  </Badge>
-                  <span className="text-muted-foregound">{result.value}</span>
-                </CardHeader>
+                </div>
+                <Badge variant="outline" className="size-fit">
+                  {result.category}
+                </Badge>
+                <span className="text-muted-foregound">{result.value}</span>
               </AccordionTrigger>
               <AccordionContent>
                 <CardContent>
