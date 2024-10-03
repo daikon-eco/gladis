@@ -69,8 +69,12 @@ export default function SearchApp() {
 
       <Accordion type="multiple" className="flex flex-col gap-4 py-4">
         {results.map((result) => (
-          <AccordionItem value={result.id} className="flex flex-col">
-            <Card key={result.id} className="flex flex-col">
+          <AccordionItem
+            value={result.id}
+            className="flex flex-col"
+            key={result.id}
+          >
+            <Card className="flex flex-col">
               <AccordionTrigger>
                 <div className="flex w-3/5 p-6">
                   <CardTitle className="truncate hover:z-10 hover:overflow-visible hover:text-clip hover:bg-background hover:underline">
@@ -91,7 +95,7 @@ export default function SearchApp() {
                   <br />
                   <br />
                   <span className="font-semibold">
-                    Performance principale de l'UF (U.F.):{' '}
+                    Performance principale de l&apos;UF (U.F.):{' '}
                   </span>{' '}
                   {result.mainPerformance}
                   <br />

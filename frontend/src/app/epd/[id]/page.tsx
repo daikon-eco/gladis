@@ -55,7 +55,9 @@ export default function SearchApp() {
               {results.map((result) => (
                 <li key={result.id} className="border-b pb-2">
                   <h3 className="font-semibold">{result.title}</h3>
-                  <p className="text-sm text-gray-600">{result.description}</p>
+                  <p className="text-sm text-gray-600">
+                    {result.functionalUnit}
+                  </p>
                 </li>
               ))}
             </ul>
